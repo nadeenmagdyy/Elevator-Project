@@ -1,0 +1,727 @@
+
+trial_final_code.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         000003c8  00000000  00000000  00000074  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         00000000  00800060  00800060  0000043c  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .bss          00000002  00800060  00800060  0000043c  2**0
+                  ALLOC
+  3 .comment      00000030  00000000  00000000  0000043c  2**0
+                  CONTENTS, READONLY
+  4 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  0000046c  2**2
+                  CONTENTS, READONLY
+  5 .debug_aranges 00000048  00000000  00000000  000004a8  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_info   00000b0c  00000000  00000000  000004f0  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_abbrev 00000647  00000000  00000000  00000ffc  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_line   00000585  00000000  00000000  00001643  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_frame  00000084  00000000  00000000  00001bc8  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_str    00000353  00000000  00000000  00001c4c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_loc    0000058b  00000000  00000000  00001f9f  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 12 .debug_ranges 00000068  00000000  00000000  0000252a  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 2a 00 	jmp	0x54	; 0x54 <__ctors_end>
+   4:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+   8:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+   c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  10:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  14:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  18:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  1c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  20:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  24:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  28:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  2c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  30:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  34:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  38:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  3c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  40:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  44:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  48:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  4c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  50:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+
+00000054 <__ctors_end>:
+  54:	11 24       	eor	r1, r1
+  56:	1f be       	out	0x3f, r1	; 63
+  58:	cf e5       	ldi	r28, 0x5F	; 95
+  5a:	d8 e0       	ldi	r29, 0x08	; 8
+  5c:	de bf       	out	0x3e, r29	; 62
+  5e:	cd bf       	out	0x3d, r28	; 61
+
+00000060 <__do_copy_data>:
+  60:	10 e0       	ldi	r17, 0x00	; 0
+  62:	a0 e6       	ldi	r26, 0x60	; 96
+  64:	b0 e0       	ldi	r27, 0x00	; 0
+  66:	e8 ec       	ldi	r30, 0xC8	; 200
+  68:	f3 e0       	ldi	r31, 0x03	; 3
+  6a:	02 c0       	rjmp	.+4      	; 0x70 <__do_copy_data+0x10>
+  6c:	05 90       	lpm	r0, Z+
+  6e:	0d 92       	st	X+, r0
+  70:	a0 36       	cpi	r26, 0x60	; 96
+  72:	b1 07       	cpc	r27, r17
+  74:	d9 f7       	brne	.-10     	; 0x6c <__do_copy_data+0xc>
+
+00000076 <__do_clear_bss>:
+  76:	20 e0       	ldi	r18, 0x00	; 0
+  78:	a0 e6       	ldi	r26, 0x60	; 96
+  7a:	b0 e0       	ldi	r27, 0x00	; 0
+  7c:	01 c0       	rjmp	.+2      	; 0x80 <.do_clear_bss_start>
+
+0000007e <.do_clear_bss_loop>:
+  7e:	1d 92       	st	X+, r1
+
+00000080 <.do_clear_bss_start>:
+  80:	a2 36       	cpi	r26, 0x62	; 98
+  82:	b2 07       	cpc	r27, r18
+  84:	e1 f7       	brne	.-8      	; 0x7e <.do_clear_bss_loop>
+  86:	0e 94 b8 01 	call	0x370	; 0x370 <main>
+  8a:	0c 94 e2 01 	jmp	0x3c4	; 0x3c4 <_exit>
+
+0000008e <__bad_interrupt>:
+  8e:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+00000092 <keypad>:
+
+char keypad(void)
+{
+	unsigned char row,col;
+	char key_num = -1;
+	unsigned char i = 0;
+  92:	40 e0       	ldi	r20, 0x00	; 0
+	while (i<3)
+  94:	29 c0       	rjmp	.+82     	; 0xe8 <keypad+0x56>
+	{
+		for (col=0;col<3;col++)
+		{
+			PORTD = (~(0b00010000<<col));
+  96:	80 e1       	ldi	r24, 0x10	; 16
+  98:	90 e0       	ldi	r25, 0x00	; 0
+  9a:	03 2e       	mov	r0, r19
+  9c:	02 c0       	rjmp	.+4      	; 0xa2 <keypad+0x10>
+  9e:	88 0f       	add	r24, r24
+  a0:	99 1f       	adc	r25, r25
+  a2:	0a 94       	dec	r0
+  a4:	e2 f7       	brpl	.-8      	; 0x9e <keypad+0xc>
+  a6:	80 95       	com	r24
+  a8:	82 bb       	out	0x12, r24	; 18
+
+			for (row=0;row<4;row++)
+  aa:	20 e0       	ldi	r18, 0x00	; 0
+  ac:	15 c0       	rjmp	.+42     	; 0xd8 <keypad+0x46>
+			{
+				if (!(PIND & (1<<row)))
+  ae:	80 b3       	in	r24, 0x10	; 16
+  b0:	90 e0       	ldi	r25, 0x00	; 0
+  b2:	02 2e       	mov	r0, r18
+  b4:	02 c0       	rjmp	.+4      	; 0xba <keypad+0x28>
+  b6:	95 95       	asr	r25
+  b8:	87 95       	ror	r24
+  ba:	0a 94       	dec	r0
+  bc:	e2 f7       	brpl	.-8      	; 0xb6 <keypad+0x24>
+  be:	80 fd       	sbrc	r24, 0
+  c0:	0a c0       	rjmp	.+20     	; 0xd6 <keypad+0x44>
+				{
+					key_num = row*3+col+1;
+  c2:	82 2f       	mov	r24, r18
+  c4:	88 0f       	add	r24, r24
+  c6:	82 0f       	add	r24, r18
+  c8:	83 0f       	add	r24, r19
+  ca:	8f 5f       	subi	r24, 0xFF	; 255
+
+					if (row==3 && col ==1)
+  cc:	23 30       	cpi	r18, 0x03	; 3
+  ce:	89 f4       	brne	.+34     	; 0xf2 <keypad+0x60>
+  d0:	31 30       	cpi	r19, 0x01	; 1
+  d2:	71 f0       	breq	.+28     	; 0xf0 <keypad+0x5e>
+  d4:	08 95       	ret
+	{
+		for (col=0;col<3;col++)
+		{
+			PORTD = (~(0b00010000<<col));
+
+			for (row=0;row<4;row++)
+  d6:	2f 5f       	subi	r18, 0xFF	; 255
+  d8:	24 30       	cpi	r18, 0x04	; 4
+  da:	48 f3       	brcs	.-46     	; 0xae <keypad+0x1c>
+	unsigned char row,col;
+	char key_num = -1;
+	unsigned char i = 0;
+	while (i<3)
+	{
+		for (col=0;col<3;col++)
+  dc:	3f 5f       	subi	r19, 0xFF	; 255
+  de:	01 c0       	rjmp	.+2      	; 0xe2 <keypad+0x50>
+  e0:	30 e0       	ldi	r19, 0x00	; 0
+  e2:	33 30       	cpi	r19, 0x03	; 3
+  e4:	c0 f2       	brcs	.-80     	; 0x96 <keypad+0x4>
+					}
+					return key_num;
+				}
+			}
+		}
+		i++;
+  e6:	4f 5f       	subi	r20, 0xFF	; 255
+char keypad(void)
+{
+	unsigned char row,col;
+	char key_num = -1;
+	unsigned char i = 0;
+	while (i<3)
+  e8:	43 30       	cpi	r20, 0x03	; 3
+  ea:	d0 f3       	brcs	.-12     	; 0xe0 <keypad+0x4e>
+				}
+			}
+		}
+		i++;
+	}
+	return key_num;
+  ec:	8f ef       	ldi	r24, 0xFF	; 255
+  ee:	08 95       	ret
+				{
+					key_num = row*3+col+1;
+
+					if (row==3 && col ==1)
+					{
+						key_num = 0;
+  f0:	80 e0       	ldi	r24, 0x00	; 0
+			}
+		}
+		i++;
+	}
+	return key_num;
+}
+  f2:	08 95       	ret
+
+000000f4 <execute>:
+
+
+
+void execute(unsigned char cmd, unsigned char data)
+{
+	PORTB &= ~(1<<SS);
+  f4:	98 b3       	in	r25, 0x18	; 24
+  f6:	9f 7e       	andi	r25, 0xEF	; 239
+  f8:	98 bb       	out	0x18, r25	; 24
+	SPDR = cmd;
+  fa:	8f b9       	out	0x0f, r24	; 15
+	while (!(SPSR & (1<<SPIF)));
+  fc:	77 9b       	sbis	0x0e, 7	; 14
+  fe:	fe cf       	rjmp	.-4      	; 0xfc <execute+0x8>
+
+	SPDR = data;
+ 100:	6f b9       	out	0x0f, r22	; 15
+	while (!(SPSR & (1<<SPIF)));
+ 102:	77 9b       	sbis	0x0e, 7	; 14
+ 104:	fe cf       	rjmp	.-4      	; 0x102 <execute+0xe>
+
+	PORTB |=(1<<SS);
+ 106:	88 b3       	in	r24, 0x18	; 24
+ 108:	80 61       	ori	r24, 0x10	; 16
+ 10a:	88 bb       	out	0x18, r24	; 24
+ 10c:	08 95       	ret
+
+0000010e <door_open>:
+}
+
+void door_open(void)
+{
+	if (ef == 0)
+ 10e:	80 91 60 00 	lds	r24, 0x0060	; 0x800060 <__DATA_REGION_ORIGIN__>
+ 112:	81 11       	cpse	r24, r1
+ 114:	0e c0       	rjmp	.+28     	; 0x132 <door_open+0x24>
+	{
+		PORTC=(1<<PC3); //move motor anti clockwise to indicate open
+ 116:	88 e0       	ldi	r24, 0x08	; 8
+ 118:	85 bb       	out	0x15, r24	; 21
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 11a:	2f e9       	ldi	r18, 0x9F	; 159
+ 11c:	86 e8       	ldi	r24, 0x86	; 134
+ 11e:	91 e0       	ldi	r25, 0x01	; 1
+ 120:	21 50       	subi	r18, 0x01	; 1
+ 122:	80 40       	sbci	r24, 0x00	; 0
+ 124:	90 40       	sbci	r25, 0x00	; 0
+ 126:	e1 f7       	brne	.-8      	; 0x120 <door_open+0x12>
+ 128:	00 c0       	rjmp	.+0      	; 0x12a <door_open+0x1c>
+ 12a:	00 00       	nop
+		_delay_ms(Time);
+		PORTC &=~(1<<PC3);
+ 12c:	85 b3       	in	r24, 0x15	; 21
+ 12e:	87 7f       	andi	r24, 0xF7	; 247
+ 130:	85 bb       	out	0x15, r24	; 21
+	}
+	if (ef == 1)
+ 132:	80 91 60 00 	lds	r24, 0x0060	; 0x800060 <__DATA_REGION_ORIGIN__>
+ 136:	81 30       	cpi	r24, 0x01	; 1
+ 138:	71 f4       	brne	.+28     	; 0x156 <door_open+0x48>
+	{
+		PORTC=(1<<PC5);
+ 13a:	80 e2       	ldi	r24, 0x20	; 32
+ 13c:	85 bb       	out	0x15, r24	; 21
+ 13e:	2f e9       	ldi	r18, 0x9F	; 159
+ 140:	86 e8       	ldi	r24, 0x86	; 134
+ 142:	91 e0       	ldi	r25, 0x01	; 1
+ 144:	21 50       	subi	r18, 0x01	; 1
+ 146:	80 40       	sbci	r24, 0x00	; 0
+ 148:	90 40       	sbci	r25, 0x00	; 0
+ 14a:	e1 f7       	brne	.-8      	; 0x144 <door_open+0x36>
+ 14c:	00 c0       	rjmp	.+0      	; 0x14e <door_open+0x40>
+ 14e:	00 00       	nop
+		_delay_ms(Time);
+		PORTC &=~(1<<PC5);
+ 150:	85 b3       	in	r24, 0x15	; 21
+ 152:	8f 7d       	andi	r24, 0xDF	; 223
+ 154:	85 bb       	out	0x15, r24	; 21
+	}
+	if (ef == 2)
+ 156:	80 91 60 00 	lds	r24, 0x0060	; 0x800060 <__DATA_REGION_ORIGIN__>
+ 15a:	82 30       	cpi	r24, 0x02	; 2
+ 15c:	71 f4       	brne	.+28     	; 0x17a <door_open+0x6c>
+	{
+		PORTC=(1<<PC7);
+ 15e:	80 e8       	ldi	r24, 0x80	; 128
+ 160:	85 bb       	out	0x15, r24	; 21
+ 162:	2f e9       	ldi	r18, 0x9F	; 159
+ 164:	86 e8       	ldi	r24, 0x86	; 134
+ 166:	91 e0       	ldi	r25, 0x01	; 1
+ 168:	21 50       	subi	r18, 0x01	; 1
+ 16a:	80 40       	sbci	r24, 0x00	; 0
+ 16c:	90 40       	sbci	r25, 0x00	; 0
+ 16e:	e1 f7       	brne	.-8      	; 0x168 <door_open+0x5a>
+ 170:	00 c0       	rjmp	.+0      	; 0x172 <door_open+0x64>
+ 172:	00 00       	nop
+		_delay_ms(Time);
+		PORTC &=~(1<<PC7);
+ 174:	85 b3       	in	r24, 0x15	; 21
+ 176:	8f 77       	andi	r24, 0x7F	; 127
+ 178:	85 bb       	out	0x15, r24	; 21
+	}
+	if (ef == 3)
+ 17a:	80 91 60 00 	lds	r24, 0x0060	; 0x800060 <__DATA_REGION_ORIGIN__>
+ 17e:	83 30       	cpi	r24, 0x03	; 3
+ 180:	79 f4       	brne	.+30     	; 0x1a0 <door_open+0x92>
+	{
+		PORTB|=(1<<PB1);
+ 182:	88 b3       	in	r24, 0x18	; 24
+ 184:	82 60       	ori	r24, 0x02	; 2
+ 186:	88 bb       	out	0x18, r24	; 24
+ 188:	2f e9       	ldi	r18, 0x9F	; 159
+ 18a:	86 e8       	ldi	r24, 0x86	; 134
+ 18c:	91 e0       	ldi	r25, 0x01	; 1
+ 18e:	21 50       	subi	r18, 0x01	; 1
+ 190:	80 40       	sbci	r24, 0x00	; 0
+ 192:	90 40       	sbci	r25, 0x00	; 0
+ 194:	e1 f7       	brne	.-8      	; 0x18e <door_open+0x80>
+ 196:	00 c0       	rjmp	.+0      	; 0x198 <door_open+0x8a>
+ 198:	00 00       	nop
+		_delay_ms(Time);
+		PORTB &=~(1<<PB1);
+ 19a:	88 b3       	in	r24, 0x18	; 24
+ 19c:	8d 7f       	andi	r24, 0xFD	; 253
+ 19e:	88 bb       	out	0x18, r24	; 24
+ 1a0:	08 95       	ret
+
+000001a2 <close_open>:
+	}
+}
+
+void close_open (unsigned char ps)
+{
+	if (ef == 0 && ps == 1)
+ 1a2:	90 91 60 00 	lds	r25, 0x0060	; 0x800060 <__DATA_REGION_ORIGIN__>
+ 1a6:	91 11       	cpse	r25, r1
+ 1a8:	10 c0       	rjmp	.+32     	; 0x1ca <close_open+0x28>
+ 1aa:	81 30       	cpi	r24, 0x01	; 1
+ 1ac:	71 f4       	brne	.+28     	; 0x1ca <close_open+0x28>
+	{
+		PORTC=(1<<PC2); //move motor anti clockwise to indicate closed
+ 1ae:	94 e0       	ldi	r25, 0x04	; 4
+ 1b0:	95 bb       	out	0x15, r25	; 21
+ 1b2:	2f e9       	ldi	r18, 0x9F	; 159
+ 1b4:	36 e8       	ldi	r19, 0x86	; 134
+ 1b6:	91 e0       	ldi	r25, 0x01	; 1
+ 1b8:	21 50       	subi	r18, 0x01	; 1
+ 1ba:	30 40       	sbci	r19, 0x00	; 0
+ 1bc:	90 40       	sbci	r25, 0x00	; 0
+ 1be:	e1 f7       	brne	.-8      	; 0x1b8 <close_open+0x16>
+ 1c0:	00 c0       	rjmp	.+0      	; 0x1c2 <close_open+0x20>
+ 1c2:	00 00       	nop
+		_delay_ms(Time);
+		PORTC &=~(1<<PC2);
+ 1c4:	95 b3       	in	r25, 0x15	; 21
+ 1c6:	9b 7f       	andi	r25, 0xFB	; 251
+ 1c8:	95 bb       	out	0x15, r25	; 21
+	}
+	if (ef == 1 && ps == 1)
+ 1ca:	90 91 60 00 	lds	r25, 0x0060	; 0x800060 <__DATA_REGION_ORIGIN__>
+ 1ce:	91 30       	cpi	r25, 0x01	; 1
+ 1d0:	81 f4       	brne	.+32     	; 0x1f2 <close_open+0x50>
+ 1d2:	81 30       	cpi	r24, 0x01	; 1
+ 1d4:	71 f4       	brne	.+28     	; 0x1f2 <close_open+0x50>
+	{
+		PORTC=(1<<PC4);
+ 1d6:	90 e1       	ldi	r25, 0x10	; 16
+ 1d8:	95 bb       	out	0x15, r25	; 21
+ 1da:	2f e9       	ldi	r18, 0x9F	; 159
+ 1dc:	36 e8       	ldi	r19, 0x86	; 134
+ 1de:	91 e0       	ldi	r25, 0x01	; 1
+ 1e0:	21 50       	subi	r18, 0x01	; 1
+ 1e2:	30 40       	sbci	r19, 0x00	; 0
+ 1e4:	90 40       	sbci	r25, 0x00	; 0
+ 1e6:	e1 f7       	brne	.-8      	; 0x1e0 <close_open+0x3e>
+ 1e8:	00 c0       	rjmp	.+0      	; 0x1ea <close_open+0x48>
+ 1ea:	00 00       	nop
+		_delay_ms(Time);
+		PORTC &=~(1<<PC4);
+ 1ec:	95 b3       	in	r25, 0x15	; 21
+ 1ee:	9f 7e       	andi	r25, 0xEF	; 239
+ 1f0:	95 bb       	out	0x15, r25	; 21
+	}
+	if (ef == 2 && ps == 1)
+ 1f2:	90 91 60 00 	lds	r25, 0x0060	; 0x800060 <__DATA_REGION_ORIGIN__>
+ 1f6:	92 30       	cpi	r25, 0x02	; 2
+ 1f8:	81 f4       	brne	.+32     	; 0x21a <close_open+0x78>
+ 1fa:	81 30       	cpi	r24, 0x01	; 1
+ 1fc:	71 f4       	brne	.+28     	; 0x21a <close_open+0x78>
+	{
+		PORTC=(1<<PC6);
+ 1fe:	90 e4       	ldi	r25, 0x40	; 64
+ 200:	95 bb       	out	0x15, r25	; 21
+ 202:	2f e9       	ldi	r18, 0x9F	; 159
+ 204:	36 e8       	ldi	r19, 0x86	; 134
+ 206:	91 e0       	ldi	r25, 0x01	; 1
+ 208:	21 50       	subi	r18, 0x01	; 1
+ 20a:	30 40       	sbci	r19, 0x00	; 0
+ 20c:	90 40       	sbci	r25, 0x00	; 0
+ 20e:	e1 f7       	brne	.-8      	; 0x208 <close_open+0x66>
+ 210:	00 c0       	rjmp	.+0      	; 0x212 <close_open+0x70>
+ 212:	00 00       	nop
+		_delay_ms(Time);
+		PORTC &=~(1<<PC6);
+ 214:	95 b3       	in	r25, 0x15	; 21
+ 216:	9f 7b       	andi	r25, 0xBF	; 191
+ 218:	95 bb       	out	0x15, r25	; 21
+	}
+	if (ef == 3 && ps == 1)
+ 21a:	90 91 60 00 	lds	r25, 0x0060	; 0x800060 <__DATA_REGION_ORIGIN__>
+ 21e:	93 30       	cpi	r25, 0x03	; 3
+ 220:	89 f4       	brne	.+34     	; 0x244 <close_open+0xa2>
+ 222:	81 30       	cpi	r24, 0x01	; 1
+ 224:	79 f4       	brne	.+30     	; 0x244 <close_open+0xa2>
+	{
+		PORTB|=(1<<PB0);
+ 226:	88 b3       	in	r24, 0x18	; 24
+ 228:	81 60       	ori	r24, 0x01	; 1
+ 22a:	88 bb       	out	0x18, r24	; 24
+ 22c:	2f e9       	ldi	r18, 0x9F	; 159
+ 22e:	36 e8       	ldi	r19, 0x86	; 134
+ 230:	81 e0       	ldi	r24, 0x01	; 1
+ 232:	21 50       	subi	r18, 0x01	; 1
+ 234:	30 40       	sbci	r19, 0x00	; 0
+ 236:	80 40       	sbci	r24, 0x00	; 0
+ 238:	e1 f7       	brne	.-8      	; 0x232 <close_open+0x90>
+ 23a:	00 c0       	rjmp	.+0      	; 0x23c <close_open+0x9a>
+ 23c:	00 00       	nop
+		_delay_ms(Time);
+		PORTB &=~(1<<PB0);
+ 23e:	88 b3       	in	r24, 0x18	; 24
+ 240:	8e 7f       	andi	r24, 0xFE	; 254
+ 242:	88 bb       	out	0x18, r24	; 24
+ 244:	08 95       	ret
+
+00000246 <after_call>:
+	}
+}
+
+void after_call(unsigned char x)
+{
+ 246:	1f 93       	push	r17
+ 248:	cf 93       	push	r28
+ 24a:	df 93       	push	r29
+ 24c:	18 2f       	mov	r17, r24
+
+	//x=call;
+	//y=ef;
+
+	DDRB |= ((1<<MOSI) |(1<<SCK) |(1<<SS));
+ 24e:	87 b3       	in	r24, 0x17	; 23
+ 250:	80 6b       	ori	r24, 0xB0	; 176
+ 252:	87 bb       	out	0x17, r24	; 23
+	SPCR= (1<<SPE) | (1<<MSTR) | (1<<SPR0);
+ 254:	81 e5       	ldi	r24, 0x51	; 81
+ 256:	8d b9       	out	0x0d, r24	; 13
+	execute(0x09,0b00000001);
+ 258:	61 e0       	ldi	r22, 0x01	; 1
+ 25a:	89 e0       	ldi	r24, 0x09	; 9
+ 25c:	0e 94 7a 00 	call	0xf4	; 0xf4 <execute>
+	execute(0x0B, 0x01);
+ 260:	61 e0       	ldi	r22, 0x01	; 1
+ 262:	8b e0       	ldi	r24, 0x0B	; 11
+ 264:	0e 94 7a 00 	call	0xf4	; 0xf4 <execute>
+	execute(0x0C, 0x01);
+ 268:	61 e0       	ldi	r22, 0x01	; 1
+ 26a:	8c e0       	ldi	r24, 0x0C	; 12
+ 26c:	0e 94 7a 00 	call	0xf4	; 0xf4 <execute>
+	ref = ef;
+ 270:	80 91 60 00 	lds	r24, 0x0060	; 0x800060 <__DATA_REGION_ORIGIN__>
+ 274:	80 93 61 00 	sts	0x0061, r24	; 0x800061 <ref>
+	//unsigned char rq_f=1;
+	if(x>ef)  //clockwise
+ 278:	81 17       	cp	r24, r17
+ 27a:	c0 f0       	brcs	.+48     	; 0x2ac <after_call+0x66>
+ 27c:	39 c0       	rjmp	.+114    	; 0x2f0 <after_call+0xaa>
+	{
+		for(int q=0 ; q<(x-ef) ; q++)
+		{
+			PORTC=0x02;
+ 27e:	82 e0       	ldi	r24, 0x02	; 2
+ 280:	85 bb       	out	0x15, r24	; 21
+			execute(0x01, ref);
+ 282:	60 91 61 00 	lds	r22, 0x0061	; 0x800061 <ref>
+ 286:	81 e0       	ldi	r24, 0x01	; 1
+ 288:	0e 94 7a 00 	call	0xf4	; 0xf4 <execute>
+ 28c:	2f e9       	ldi	r18, 0x9F	; 159
+ 28e:	86 e8       	ldi	r24, 0x86	; 134
+ 290:	91 e0       	ldi	r25, 0x01	; 1
+ 292:	21 50       	subi	r18, 0x01	; 1
+ 294:	80 40       	sbci	r24, 0x00	; 0
+ 296:	90 40       	sbci	r25, 0x00	; 0
+ 298:	e1 f7       	brne	.-8      	; 0x292 <after_call+0x4c>
+ 29a:	00 c0       	rjmp	.+0      	; 0x29c <after_call+0x56>
+ 29c:	00 00       	nop
+			_delay_ms(Time);
+			ref++;
+ 29e:	80 91 61 00 	lds	r24, 0x0061	; 0x800061 <ref>
+ 2a2:	8f 5f       	subi	r24, 0xFF	; 255
+ 2a4:	80 93 61 00 	sts	0x0061, r24	; 0x800061 <ref>
+	execute(0x0C, 0x01);
+	ref = ef;
+	//unsigned char rq_f=1;
+	if(x>ef)  //clockwise
+	{
+		for(int q=0 ; q<(x-ef) ; q++)
+ 2a8:	21 96       	adiw	r28, 0x01	; 1
+ 2aa:	02 c0       	rjmp	.+4      	; 0x2b0 <after_call+0x6a>
+ 2ac:	c0 e0       	ldi	r28, 0x00	; 0
+ 2ae:	d0 e0       	ldi	r29, 0x00	; 0
+ 2b0:	81 2f       	mov	r24, r17
+ 2b2:	90 e0       	ldi	r25, 0x00	; 0
+ 2b4:	20 91 60 00 	lds	r18, 0x0060	; 0x800060 <__DATA_REGION_ORIGIN__>
+ 2b8:	82 1b       	sub	r24, r18
+ 2ba:	91 09       	sbc	r25, r1
+ 2bc:	c8 17       	cp	r28, r24
+ 2be:	d9 07       	cpc	r29, r25
+ 2c0:	f4 f2       	brlt	.-68     	; 0x27e <after_call+0x38>
+			PORTC=0x02;
+			execute(0x01, ref);
+			_delay_ms(Time);
+			ref++;
+		}
+		PORTC = 0x03; //00000011
+ 2c2:	83 e0       	ldi	r24, 0x03	; 3
+ 2c4:	85 bb       	out	0x15, r24	; 21
+		execute(0x01, ref);
+ 2c6:	60 91 61 00 	lds	r22, 0x0061	; 0x800061 <ref>
+ 2ca:	81 e0       	ldi	r24, 0x01	; 1
+ 2cc:	0e 94 7a 00 	call	0xf4	; 0xf4 <execute>
+		ef=x;
+ 2d0:	10 93 60 00 	sts	0x0060, r17	; 0x800060 <__DATA_REGION_ORIGIN__>
+		door_open();
+ 2d4:	0e 94 87 00 	call	0x10e	; 0x10e <door_open>
+ 2d8:	2f e9       	ldi	r18, 0x9F	; 159
+ 2da:	86 e8       	ldi	r24, 0x86	; 134
+ 2dc:	91 e0       	ldi	r25, 0x01	; 1
+ 2de:	21 50       	subi	r18, 0x01	; 1
+ 2e0:	80 40       	sbci	r24, 0x00	; 0
+ 2e2:	90 40       	sbci	r25, 0x00	; 0
+ 2e4:	e1 f7       	brne	.-8      	; 0x2de <after_call+0x98>
+ 2e6:	00 c0       	rjmp	.+0      	; 0x2e8 <after_call+0xa2>
+ 2e8:	00 00       	nop
+		_delay_ms(Time);
+		close_open(1);
+ 2ea:	81 e0       	ldi	r24, 0x01	; 1
+ 2ec:	0e 94 d1 00 	call	0x1a2	; 0x1a2 <close_open>
+	}
+	if(x<ef)  //anti-clockwise
+ 2f0:	80 91 60 00 	lds	r24, 0x0060	; 0x800060 <__DATA_REGION_ORIGIN__>
+ 2f4:	18 17       	cp	r17, r24
+ 2f6:	b8 f0       	brcs	.+46     	; 0x326 <after_call+0xe0>
+ 2f8:	37 c0       	rjmp	.+110    	; 0x368 <after_call+0x122>
+	{
+		for(int q=0 ; q<(ef-x) ; q++)
+		{
+			PORTC=0x01;
+ 2fa:	81 e0       	ldi	r24, 0x01	; 1
+ 2fc:	85 bb       	out	0x15, r24	; 21
+			execute(0x01, ref);
+ 2fe:	60 91 61 00 	lds	r22, 0x0061	; 0x800061 <ref>
+ 302:	0e 94 7a 00 	call	0xf4	; 0xf4 <execute>
+ 306:	2f e9       	ldi	r18, 0x9F	; 159
+ 308:	86 e8       	ldi	r24, 0x86	; 134
+ 30a:	91 e0       	ldi	r25, 0x01	; 1
+ 30c:	21 50       	subi	r18, 0x01	; 1
+ 30e:	80 40       	sbci	r24, 0x00	; 0
+ 310:	90 40       	sbci	r25, 0x00	; 0
+ 312:	e1 f7       	brne	.-8      	; 0x30c <after_call+0xc6>
+ 314:	00 c0       	rjmp	.+0      	; 0x316 <after_call+0xd0>
+ 316:	00 00       	nop
+			_delay_ms(Time);
+			ref--;
+ 318:	80 91 61 00 	lds	r24, 0x0061	; 0x800061 <ref>
+ 31c:	81 50       	subi	r24, 0x01	; 1
+ 31e:	80 93 61 00 	sts	0x0061, r24	; 0x800061 <ref>
+		_delay_ms(Time);
+		close_open(1);
+	}
+	if(x<ef)  //anti-clockwise
+	{
+		for(int q=0 ; q<(ef-x) ; q++)
+ 322:	21 96       	adiw	r28, 0x01	; 1
+ 324:	02 c0       	rjmp	.+4      	; 0x32a <after_call+0xe4>
+ 326:	c0 e0       	ldi	r28, 0x00	; 0
+ 328:	d0 e0       	ldi	r29, 0x00	; 0
+ 32a:	80 91 60 00 	lds	r24, 0x0060	; 0x800060 <__DATA_REGION_ORIGIN__>
+ 32e:	90 e0       	ldi	r25, 0x00	; 0
+ 330:	81 1b       	sub	r24, r17
+ 332:	91 09       	sbc	r25, r1
+ 334:	c8 17       	cp	r28, r24
+ 336:	d9 07       	cpc	r29, r25
+ 338:	04 f3       	brlt	.-64     	; 0x2fa <after_call+0xb4>
+			PORTC=0x01;
+			execute(0x01, ref);
+			_delay_ms(Time);
+			ref--;
+		}
+		PORTC= 0x03; //00000011
+ 33a:	83 e0       	ldi	r24, 0x03	; 3
+ 33c:	85 bb       	out	0x15, r24	; 21
+		execute(0x01, ref);
+ 33e:	60 91 61 00 	lds	r22, 0x0061	; 0x800061 <ref>
+ 342:	81 e0       	ldi	r24, 0x01	; 1
+ 344:	0e 94 7a 00 	call	0xf4	; 0xf4 <execute>
+		ef=x;
+ 348:	10 93 60 00 	sts	0x0060, r17	; 0x800060 <__DATA_REGION_ORIGIN__>
+		door_open();
+ 34c:	0e 94 87 00 	call	0x10e	; 0x10e <door_open>
+ 350:	2f e9       	ldi	r18, 0x9F	; 159
+ 352:	86 e8       	ldi	r24, 0x86	; 134
+ 354:	91 e0       	ldi	r25, 0x01	; 1
+ 356:	21 50       	subi	r18, 0x01	; 1
+ 358:	80 40       	sbci	r24, 0x00	; 0
+ 35a:	90 40       	sbci	r25, 0x00	; 0
+ 35c:	e1 f7       	brne	.-8      	; 0x356 <after_call+0x110>
+ 35e:	00 c0       	rjmp	.+0      	; 0x360 <after_call+0x11a>
+ 360:	00 00       	nop
+		_delay_ms(Time);
+		close_open(1);
+ 362:	81 e0       	ldi	r24, 0x01	; 1
+ 364:	0e 94 d1 00 	call	0x1a2	; 0x1a2 <close_open>
+	}
+}
+ 368:	df 91       	pop	r29
+ 36a:	cf 91       	pop	r28
+ 36c:	1f 91       	pop	r17
+ 36e:	08 95       	ret
+
+00000370 <main>:
+int main(void)
+{
+	char Temp = -1;
+	char call = -1;
+	DDRA=0x00;
+ 370:	1a ba       	out	0x1a, r1	; 26
+	DDRB=(1<<PB0)|(1<<PB1);
+ 372:	83 e0       	ldi	r24, 0x03	; 3
+ 374:	87 bb       	out	0x17, r24	; 23
+	DDRC=0xFF;
+ 376:	8f ef       	ldi	r24, 0xFF	; 255
+ 378:	84 bb       	out	0x14, r24	; 20
+	DDRD = 0b01110000;
+ 37a:	80 e7       	ldi	r24, 0x70	; 112
+ 37c:	81 bb       	out	0x11, r24	; 17
+	PORTA=0x00;
+ 37e:	1b ba       	out	0x1b, r1	; 27
+	PORTB=0x00;
+ 380:	18 ba       	out	0x18, r1	; 24
+	PORTC=0;
+ 382:	15 ba       	out	0x15, r1	; 21
+	PORTD = 0b00000000;
+ 384:	12 ba       	out	0x12, r1	; 18
+	while (1)
+	{
+		if((GET_BIT(PINA, 0)==1))
+ 386:	c8 9b       	sbis	0x19, 0	; 25
+ 388:	03 c0       	rjmp	.+6      	; 0x390 <main+0x20>
+		{
+			call=1;
+			after_call(call);
+ 38a:	81 e0       	ldi	r24, 0x01	; 1
+ 38c:	0e 94 23 01 	call	0x246	; 0x246 <after_call>
+		}
+		if((GET_BIT(PINA, 1)==1))
+ 390:	c9 9b       	sbis	0x19, 1	; 25
+ 392:	03 c0       	rjmp	.+6      	; 0x39a <main+0x2a>
+		{
+			call=2;
+			after_call(call);
+ 394:	82 e0       	ldi	r24, 0x02	; 2
+ 396:	0e 94 23 01 	call	0x246	; 0x246 <after_call>
+		}
+		if((GET_BIT(PINA, 2)==1))
+ 39a:	ca 9b       	sbis	0x19, 2	; 25
+ 39c:	03 c0       	rjmp	.+6      	; 0x3a4 <main+0x34>
+		{
+			call=3;
+			after_call(call);
+ 39e:	83 e0       	ldi	r24, 0x03	; 3
+ 3a0:	0e 94 23 01 	call	0x246	; 0x246 <after_call>
+		}
+		if((GET_BIT(PINA, 4)==1))
+ 3a4:	cc 9b       	sbis	0x19, 4	; 25
+ 3a6:	03 c0       	rjmp	.+6      	; 0x3ae <main+0x3e>
+		{
+			call=0;
+			after_call(call);
+ 3a8:	80 e0       	ldi	r24, 0x00	; 0
+ 3aa:	0e 94 23 01 	call	0x246	; 0x246 <after_call>
+		}
+		Temp = keypad();
+ 3ae:	0e 94 49 00 	call	0x92	; 0x92 <keypad>
+		if (Temp<4 && Temp != -1)
+ 3b2:	84 30       	cpi	r24, 0x04	; 4
+ 3b4:	10 f4       	brcc	.+4      	; 0x3ba <main+0x4a>
+		{
+			call = Temp;
+			after_call(call);
+ 3b6:	0e 94 23 01 	call	0x246	; 0x246 <after_call>
+		}
+		after_call(ef);
+ 3ba:	80 91 60 00 	lds	r24, 0x0060	; 0x800060 <__DATA_REGION_ORIGIN__>
+ 3be:	0e 94 23 01 	call	0x246	; 0x246 <after_call>
+	}
+ 3c2:	e1 cf       	rjmp	.-62     	; 0x386 <main+0x16>
+
+000003c4 <_exit>:
+ 3c4:	f8 94       	cli
+
+000003c6 <__stop_program>:
+ 3c6:	ff cf       	rjmp	.-2      	; 0x3c6 <__stop_program>
